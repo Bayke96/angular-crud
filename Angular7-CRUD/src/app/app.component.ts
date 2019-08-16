@@ -18,10 +18,23 @@ export class AppComponent {
   createPostTitle;
   createPostBody;
 
-  editPostData;
-  editPostUser;
-  editPostTitle;
-  editPostBody;
+  getPostData;
+  getPostID;
+  getPostUser;
+  getPostTitle;
+  getPostBody;
+
+  updatePostData;
+  updatePostID;
+  updatePostUser;
+  updatePostTitle;
+  updatePostBody;
+
+  deletePostData;
+  deletePostID;
+  deletePostUser;
+  deletePostTitle;
+  deletePostBody;
 
   constructor(private postService: PostServiceService) { }
 
@@ -38,8 +51,9 @@ export class AppComponent {
 
     this.createPostData = new FormGroup({
 
-      user: new FormControl("", Validators.compose([
-        Validators.required
+      userID: new FormControl("", Validators.compose([
+        Validators.required,
+        Validators.pattern("^[0-9]*$"),
       ])),
 
       title: new FormControl("", Validators.compose([
@@ -55,18 +69,70 @@ export class AppComponent {
         ]))
     });
 
-    this.editPostData = new FormGroup({
-      user: new FormControl(""),
-      title: new FormControl(""),
-      body: new FormControl("")
+    this.getPostData = new FormGroup({
+
+      postID: new FormControl("", Validators.compose([
+        Validators.required,
+        Validators.pattern("^[0-9]*$"),
+      ]))
+
+    });
+
+    this.updatePostData = new FormGroup({
+
+      postID: new FormControl("", Validators.compose([
+        Validators.required,
+        Validators.pattern("^[0-9]*$"),
+      ])),
+
+      userID: new FormControl("", Validators.compose([
+        Validators.required,
+        Validators.pattern("^[0-9]*$"),
+      ])),
+
+      title: new FormControl("", Validators.compose([
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(128)
+      ])),
+
+      body: new FormControl("", Validators.compose([
+        Validators.required,
+        Validators.minLength(6),
+        Validators.maxLength(255)
+      ]))
+    });
+
+    this.deletePostData = new FormGroup({
+
+      postID: new FormControl("", Validators.compose([
+        Validators.required,
+        Validators.pattern("^[0-9]*$"),
+      ]))
+
     });
 
   }
 
   onSubmitCreatePost(data) {
-    this.createPostUser = data.user;
+    this.createPostUser = data.userID;
     this.createPostTitle = data.title;
     this.createPostBody = data.body;
+  }
+
+  onSubmitGetPost(data) {
+    this.getPostID = data.postID;
+  }
+
+  onSubmitUpdatePost(data) {
+    this.updatePostID = data.postID;
+    this.updatePostUser = data.userID;
+    this.updatePostTitle = data.title;
+    this.updatePostBody = data.body;
+  }
+
+  onSubmitDeletePost(data) {
+    this.deletePostID = data.postID;
   }
 
 }

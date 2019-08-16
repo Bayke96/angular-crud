@@ -11,7 +11,7 @@
         <form [formGroup]="createPostData" (ngSubmit)="onSubmitCreatePost(createPostData.value)">
 
           <p>User</p>
-          <select formControlName="user">
+          <select formControlName="userID">
             <option value="default">Choose</option>
             <option *ngFor="let user of usersData; let i = index" [value]="user.id">
               {{ user.name }}
@@ -35,10 +35,10 @@
       <mat-tab label="Read">
         <h3 class="sub-title">Get Post</h3>
 
-        <form>
+        <form [formGroup]="getPostData" (ngSubmit)="onSubmitGetPost(getPostData.value)">
 
           <p>Post ID</p>
-          <select>
+          <select formControlName="postID">
             <option value="default">Choose</option>
             <option *ngFor="let post of postsData; let i = index" [value]="post.id">
               {{ post.id }}
@@ -51,7 +51,7 @@
 
           <p>Body</p>
 
-          <input type="submit" class="form-button" value="Search">
+          <input type="submit" class="form-button" value="Search" [disabled]="!getPostData.valid">
           <input type="reset" class="form-button" value="Reset">
 
         </form>
@@ -61,10 +61,10 @@
       <mat-tab label="Update">
         <h3 class="sub-title">Update Post</h3>
 
-        <form>
+        <form [formGroup]="updatePostData" (ngSubmit)="onSubmitUpdatePost(updatePostData.value)">
 
           <p>Post ID</p>
-          <select>
+          <select formControlName="postID">
             <option value="default">Choose</option>
             <option *ngFor="let post of postsData; let i = index" [value]="post.id">
               {{ post.id }}
@@ -72,7 +72,7 @@
           </select>
 
           <p>User</p>
-          <select>
+          <select formControlName="userID">
             <option value="default">Choose</option>
             <option *ngFor="let user of usersData; let i = index" [value]="user.id">
               {{ user.name }}
@@ -80,10 +80,13 @@
           </select>
 
           <p>Title</p>
+          <input type="text" name="title" formControlName="title" />
 
           <p>Body</p>
+          <textarea name="body" formControlName="body"></textarea>
+          <br />
 
-          <input type="submit" class="form-button" value="Update">
+          <input type="submit" class="form-button" value="Update" [disabled]="!updatePostData.valid">
           <input type="reset" class="form-button" value="Reset">
 
         </form>
@@ -92,10 +95,10 @@
       <mat-tab label="Delete">
         <h3 class="sub-title">Delete Post</h3>
 
-        <form>
+        <form [formGroup]="deletePostData" (ngSubmit)="onSubmitDeletePost(deletePostData.value)">
 
           <p>Post ID</p>
-          <select>
+          <select formControlName="postID">
             <option value="default">Choose</option>
             <option *ngFor="let post of postsData; let i = index" [value]="post.id">
               {{ post.id }}
@@ -109,7 +112,7 @@
           <p>Body</p>
 
 
-          <input type="submit" class="form-button" value="Delete">
+          <input type="submit" class="form-button" value="Delete" [disabled]="!deletePostData.valid">
           <input type="reset" class="form-button" value="Reset">
 
         </form>

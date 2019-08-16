@@ -50,6 +50,7 @@ textarea {
   margin-left: 0.5em;
   margin-right: 0.5em;
   transition: all 0.6s;
+  margin-bottom: 1.5em;
 }
 
   .form-button:hover {
