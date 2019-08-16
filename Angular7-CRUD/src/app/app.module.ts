@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule, MatOptionModule, MatSelectModule, MatIconModule } from '@angular/material';
 import { MatTabsModule } from '@angular/material';
 
 @NgModule({
@@ -17,6 +18,10 @@ import { MatTabsModule } from '@angular/material';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+    MatInputModule,
+    MatOptionModule,
+    MatSelectModule,
+    MatIconModule,
     MatTabsModule
   ],
   providers: [],

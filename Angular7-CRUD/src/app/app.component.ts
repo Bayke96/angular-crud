@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Angular7-CRUD';
+  title = 'Angular 7 - Consuming RESTful API';
 }

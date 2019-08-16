@@ -1,0 +1,49 @@
+#main-title {
+  text-align: center;
+}
+
+.crud-container {
+  height: 100%;
+  width: 100%;
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+}
+
+.sub-title {
+  margin-top: 2em;
+}
+
+#crud-tab-group {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+::ng-deep .crud-container .mat-tab-list .mat-tab-labels {
+  font-weight: bold;
+  color: white;
+  background-color: rebeccapurple;
+}
+
+.form-button {
+  width: 8em;
+  height: 3em;
+  border-style: none;
+  border-radius: 2px;
+  color: white;
+  background-color: rebeccapurple;
+  font-weight: bold;
+  padding: 1em;
+  margin-top: 2em;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  transition: all 0.6s;
+}
+
+  .form-button:hover {
+    border-style: solid;
+    border-width: 2px;
+    border-color: rebeccapurple;
+    background-color: white;
+    color: rebeccapurple;
+  }
