@@ -11,7 +11,7 @@
         <form [formGroup]="createPostData" (ngSubmit)="onSubmitCreatePost(createPostData.value)">
 
           <p>User</p>
-          <select>
+          <select formControlName="user">
             <option value="default">Choose</option>
             <option *ngFor="let user of usersData; let i = index" [value]="user.id">
               {{ user.name }}
@@ -25,7 +25,7 @@
           <textarea name="body" formControlName="body"></textarea>
           <br />
 
-          <input type="submit" class="form-button" value="Create">
+          <input type="submit" class="form-button" value="Create" [disabled]="!createPostData.valid">
           <input type="reset" class="form-button" value="Reset">
 
         </form>
@@ -38,9 +38,17 @@
         <form>
 
           <p>Post ID</p>
+          <select>
+            <option value="default">Choose</option>
+            <option *ngFor="let post of postsData; let i = index" [value]="post.id">
+              {{ post.id }}
+            </option>
+          </select>
 
           <p>User</p>
+
           <p>Title</p>
+
           <p>Body</p>
 
           <input type="submit" class="form-button" value="Search">
@@ -56,9 +64,23 @@
         <form>
 
           <p>Post ID</p>
+          <select>
+            <option value="default">Choose</option>
+            <option *ngFor="let post of postsData; let i = index" [value]="post.id">
+              {{ post.id }}
+            </option>
+          </select>
 
           <p>User</p>
+          <select>
+            <option value="default">Choose</option>
+            <option *ngFor="let user of usersData; let i = index" [value]="user.id">
+              {{ user.name }}
+            </option>
+          </select>
+
           <p>Title</p>
+
           <p>Body</p>
 
           <input type="submit" class="form-button" value="Update">
@@ -73,12 +95,20 @@
         <form>
 
           <p>Post ID</p>
+          <select>
+            <option value="default">Choose</option>
+            <option *ngFor="let post of postsData; let i = index" [value]="post.id">
+              {{ post.id }}
+            </option>
+          </select>
 
           <p>User</p>
+
           <p>Title</p>
+
           <p>Body</p>
 
-          
+
           <input type="submit" class="form-button" value="Delete">
           <input type="reset" class="form-button" value="Reset">
 

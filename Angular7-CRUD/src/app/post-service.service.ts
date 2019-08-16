@@ -6,12 +6,17 @@ import { HttpClient } from '@angular/common/http';
 })
 export class PostServiceService {
 
-  private usersData = [];
   private getAllUsersURL = "https://jsonplaceholder.typicode.com/users";
+  private getAllPostsURL = "https://jsonplaceholder.typicode.com/posts";
 
   constructor(private http: HttpClient) { }
 
   getUsers() {
     return this.http.get(this.getAllUsersURL);
   }
+
+  getPosts() {
+    return this.http.get(this.getAllPostsURL);
+  }
+
 }
