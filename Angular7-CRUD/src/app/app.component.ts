@@ -64,15 +64,9 @@ export class AppComponent {
   }
 
   onSubmitCreatePost(data) {
-
     this.createPostUser = data.user;
     this.createPostTitle = data.title;
     this.createPostBody = data.body;
-
-    console.log("User:" + this.createPostUser);
-    console.log("Title: " + this.createPostTitle);
-    console.log("Body: " + this.createPostBody);
-
   }
 
 }
