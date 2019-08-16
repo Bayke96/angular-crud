@@ -25,6 +25,17 @@
   background-color: rebeccapurple;
 }
 
+input[type="text"]{
+  width: 15em;
+  text-align: center;
+  font-weight: bold;
+}
+
+textarea {
+  width: 30em;
+  height: 8em;
+}
+
 .form-button {
   width: 8em;
   height: 3em;
