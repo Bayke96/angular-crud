@@ -1,131 +1,149 @@
 <!--The content below is only a placeholder and can be replaced.-->
-  <div class="crud-container">
+<div class="crud-container">
 
-    <h2 id="main-title">Manage Posts</h2>
+  <h2 id="main-title">Manage Posts</h2>
 
-    <mat-tab-group mat-stretch-tabs id="crud-tab-group">
+  <mat-tab-group mat-stretch-tabs id="crud-tab-group">
 
-      <mat-tab label="Create" class="crud-tab">
-        <h3 class="sub-title">Create Post</h3>
+    <mat-tab label="Create" class="crud-tab">
+      <h3 class="sub-title">Create Post</h3>
 
-        <form [formGroup]="createPostData" (ngSubmit)="onSubmitCreatePost(createPostData.value)">
+      <form [formGroup]="createPostData" (ngSubmit)="onSubmitCreatePost(createPostData.value)">
 
-          <p>User</p>
-          <select formControlName="userID">
-            <option value="default">Choose</option>
-            <option *ngFor="let user of usersData; let i = index" [value]="user.id">
-              {{ user.name }}
-            </option>
-          </select>
+        <p>User</p>
+        <select formControlName="userID">
+          <option value="default">Choose</option>
+          <option *ngFor="let user of usersData; let i = index" [value]="user.id">
+            {{ user.name }}
+          </option>
+        </select>
 
-          <p>Title</p>
-          <input type="text" name="title" formControlName="title" />
+        <p>Title</p>
+        <input type="text" name="title" formControlName="title" />
 
-          <p>Body</p>
-          <textarea name="body" formControlName="body"></textarea>
-          <br />
+        <p>Body</p>
+        <textarea name="body" formControlName="body"></textarea>
+        <br />
 
-          <input type="submit" class="form-button" value="Create" [disabled]="!createPostData.valid">
-          <input type="reset" class="form-button" value="Reset">
+        <input type="submit" class="form-button" value="Create" [disabled]="!createPostData.valid">
+        <input type="reset" class="form-button" value="Reset">
 
-        </form>
+      </form>
 
-      </mat-tab>
+    </mat-tab>
 
-      <mat-tab label="Read">
-        <h3 class="sub-title">Get Post</h3>
+    <mat-tab label="Read">
+      <h3 class="sub-title">Get Post</h3>
 
-        <form [formGroup]="getPostData" (ngSubmit)="onSubmitGetPost(getPostData.value)">
+      <form [formGroup]="getPostData" (ngSubmit)="onSubmitGetPost(getPostData.value)">
 
-          <p>Post ID</p>
-          <select formControlName="postID" (change)="loadGetPost($event.target.value)">
-            <option value="default">Choose</option>
-            <option *ngFor="let post of postsData; let i = index" [value]="post.id">
-              {{ post.id }}
-            </option>
-          </select>
+        <p>Post ID</p>
+        <select formControlName="postID" (change)="loadGetPost($event.target.value)">
+          <option value="default">Choose</option>
+          <option *ngFor="let post of postsData; let i = index" [value]="post.id">
+            {{ post.id }}
+          </option>
+        </select>
 
-          <p>User</p>
-          <p id="get-post-user"></p>
+        <p>User</p>
+        <p id="get-post-user"></p>
 
-          <p>Title</p>
-          <p id="get-post-title"></p>
+        <p>Title</p>
+        <p id="get-post-title"></p>
 
-          <p>Body</p>
-          <p id="get-post-body"></p>
+        <p>Body</p>
+        <p id="get-post-body"></p>
 
-          <input type="submit" class="form-button" value="Search" [disabled]="!getPostData.valid">
-          <input type="reset" class="form-button" value="Reset" (click)="resetGetPost()">
+        <input type="submit" class="form-button" value="Search" [disabled]="!getPostData.valid">
+        <input type="reset" class="form-button" value="Reset" (click)="resetGetPost()">
 
-        </form>
-        
-      </mat-tab>
+      </form>
 
-      <mat-tab label="Update">
-        <h3 class="sub-title">Update Post</h3>
+    </mat-tab>
 
-        <form [formGroup]="updatePostData" (ngSubmit)="onSubmitUpdatePost(updatePostData.value)">
+    <mat-tab label="Update">
+      <h3 class="sub-title">Update Post</h3>
 
-          <p>Post ID</p>
-          <select formControlName="postID" (change)="loadUpdatePost($event.target.value)">
-            <option value="default">Choose</option>
-            <option *ngFor="let post of postsData; let i = index" [value]="post.id">
-              {{ post.id }}
-            </option>
-          </select>
+      <form [formGroup]="updatePostData" (ngSubmit)="onSubmitUpdatePost(updatePostData.value)">
 
-          <p>User</p>
-          <select formControlName="userID">
-            <option value="default">Choose</option>
-            <option *ngFor="let user of usersData; let i = index" [value]="user.id">
-              {{ user.name }}
-            </option>
-          </select>
+        <p>Post ID</p>
+        <select formControlName="postID" (change)="loadUpdatePost($event.target.value)">
+          <option value="default">Choose</option>
+          <option *ngFor="let post of postsData; let i = index" [value]="post.id">
+            {{ post.id }}
+          </option>
+        </select>
 
-          <p>Title</p>
-          <input type="text" name="title" formControlName="title" />
+        <p>User</p>
+        <select formControlName="userID">
+          <option value="default">Choose</option>
+          <option *ngFor="let user of usersData; let i = index" [value]="user.id">
+            {{ user.name }}
+          </option>
+        </select>
 
-          <p>Body</p>
-          <textarea name="body" formControlName="body"></textarea>
-          <br />
+        <p>Title</p>
+        <input type="text" name="title" formControlName="title" />
 
-          <input type="submit" class="form-button" value="Update" [disabled]="!updatePostData.valid">
-          <input type="reset" class="form-button" value="Reset">
+        <p>Body</p>
+        <textarea name="body" formControlName="body"></textarea>
+        <br />
 
-        </form>
-      </mat-tab>
+        <input type="submit" class="form-button" value="Update" [disabled]="!updatePostData.valid">
+        <input type="reset" class="form-button" value="Reset">
 
-      <mat-tab label="Delete">
-        <h3 class="sub-title">Delete Post</h3>
+      </form>
+    </mat-tab>
 
-        <form [formGroup]="deletePostData" (ngSubmit)="onSubmitDeletePost(deletePostData.value)">
+    <mat-tab label="Delete">
+      <h3 class="sub-title">Delete Post</h3>
 
-          <p>Post ID</p>
-          <select formControlName="postID" (change)="loadDeletePost($event.target.value)">
-            <option value="default">Choose</option>
-            <option *ngFor="let post of postsData; let i = index" [value]="post.id">
-              {{ post.id }}
-            </option>
-          </select>
+      <form [formGroup]="deletePostData" (ngSubmit)="onSubmitDeletePost(deletePostData.value)">
 
-          <p>User</p>
-          <p id="delete-post-user"></p>
+        <p>Post ID</p>
+        <select formControlName="postID" (change)="loadDeletePost($event.target.value)">
+          <option value="default">Choose</option>
+          <option *ngFor="let post of postsData; let i = index" [value]="post.id">
+            {{ post.id }}
+          </option>
+        </select>
 
-          <p>Title</p>
-          <p id="delete-post-title"></p>
+        <p>User</p>
+        <p id="delete-post-user"></p>
 
-          <p>Body</p>
-          <p id="delete-post-body"></p>
+        <p>Title</p>
+        <p id="delete-post-title"></p>
+
+        <p>Body</p>
+        <p id="delete-post-body"></p>
 
 
-          <input type="submit" class="form-button" value="Delete" [disabled]="!deletePostData.valid">
-          <input type="reset" class="form-button" value="Reset" (click)="resetDeletePost()">
+        <input type="submit" class="form-button" value="Delete" [disabled]="!deletePostData.valid">
+        <input type="reset" class="form-button" value="Reset" (click)="resetDeletePost()">
 
-        </form>
-      </mat-tab>
+      </form>
+    </mat-tab>
 
-    </mat-tab-group>
+  </mat-tab-group>
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="response-modal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" id="modal-title">Create a new post</h4>
+      </div>
+      <div class="modal-body">
+        <p id="modal-text"><strong>Post created successfully.</strong></p>
+      </div>
+    </div>
 
   </div>
+</div>
 
 <router-outlet></router-outlet>

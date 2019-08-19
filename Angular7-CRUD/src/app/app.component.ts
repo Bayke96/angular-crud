@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PostServiceService } from './post-service.service';
+declare var $: any;
 
 @Component({
   selector: 'app-root',
@@ -38,7 +39,6 @@ export class AppComponent {
   deletePostBody;
 
   constructor(private postService: PostServiceService) { }
-
 
   ngOnInit() {
 
@@ -115,16 +115,31 @@ export class AppComponent {
 
   }
 
+  // Create Post
   onSubmitCreatePost(data) {
     this.createPostUser = data.userID;
     this.createPostTitle = data.title;
     this.createPostBody = data.body;
+
+    var formData = {
+      user: this.createPostUser,
+      title: this.createPostTitle,
+      body: this.createPostBody
+    };
+
+    this.postService.createPost(formData).subscribe((postResponse) => {
+      document.getElementById("modal-title").innerText = 'Create a new post';
+      document.getElementById("modal-text").innerHTML = '<strong>Post created successfully.</strong>';
+      $('#response-modal').modal('show');
+    });
+
   }
 
   onSubmitGetPost(data) {
     this.getPostID = data.postID;
   }
 
+  // Read / Get Post
   loadGetPost(target) {
     let postID = target;
 
@@ -154,6 +169,7 @@ export class AppComponent {
     document.getElementById('get-post-body').innerText = "";
   }
 
+  // Update an existing post
   loadUpdatePost(target) {
 
     this.updatePostID = target;
@@ -167,7 +183,6 @@ export class AppComponent {
       return false;
     }
 
-    
     this.postService.loadPost(this.updatePostID).subscribe((postData) => {
       this.updatePostData.patchValue({
         userID: postData['userId'],
@@ -185,6 +200,7 @@ export class AppComponent {
     this.updatePostBody = data.body;
   }
 
+  // Delete an existing post
   loadDeletePost(target) {
     let postID = target;
 
