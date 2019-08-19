@@ -20,7 +20,8 @@ export class AppComponent {
 
   getPostData;
   getPostID;
-  getPostUser;
+  getPostUserID;
+  getPostUsername;
   getPostTitle;
   getPostBody;
 
@@ -124,6 +125,59 @@ export class AppComponent {
     this.getPostID = data.postID;
   }
 
+  loadGetPost(target) {
+    let postID = target;
+
+    if (!String(postID).match("[0-9]+")) {
+      document.getElementById('get-post-user').innerText = "";
+      document.getElementById('get-post-title').innerText = "";
+      document.getElementById('get-post-body').innerText = "";
+      return false;
+    }
+
+    this.postService.loadPost(postID).subscribe((postData) => {
+
+      this.postService.loadUser(postData['userId']).subscribe((userData) => {
+        document.getElementById('get-post-user').innerText = userData['username'];
+      });
+
+      document.getElementById('get-post-title').innerText = postData['title'];
+      document.getElementById('get-post-body').innerText = postData['body'];
+
+    });
+
+  }
+
+  resetGetPost() {
+    document.getElementById('get-post-user').innerText = "";
+    document.getElementById('get-post-title').innerText = "";
+    document.getElementById('get-post-body').innerText = "";
+  }
+
+  loadUpdatePost(target) {
+
+    this.updatePostID = target;
+
+    if (!String(this.updatePostID).match("[0-9]+")) {
+      this.updatePostData.patchValue({
+        userID: "default",
+        title: "",
+        body: ""
+      });
+      return false;
+    }
+
+    
+    this.postService.loadPost(this.updatePostID).subscribe((postData) => {
+      this.updatePostData.patchValue({
+        userID: postData['userId'],
+        title: postData['title'],
+        body: postData['body']
+      });
+    });
+
+  }
+  
   onSubmitUpdatePost(data) {
     this.updatePostID = data.postID;
     this.updatePostUser = data.userID;
@@ -131,8 +185,37 @@ export class AppComponent {
     this.updatePostBody = data.body;
   }
 
+  loadDeletePost(target) {
+    let postID = target;
+
+    if (!String(postID).match("[0-9]+")) {
+      document.getElementById('delete-post-user').innerText = "";
+      document.getElementById('delete-post-title').innerText = "";
+      document.getElementById('delete-post-body').innerText = "";
+      return false;
+    }
+
+    this.postService.loadPost(postID).subscribe((postData) => {
+
+      this.postService.loadUser(postData['userId']).subscribe((userData) => {
+        document.getElementById('delete-post-user').innerText = userData['username'];
+      });
+
+      document.getElementById('delete-post-title').innerText = postData['title'];
+      document.getElementById('delete-post-body').innerText = postData['body'];
+
+    });
+
+  }
+
   onSubmitDeletePost(data) {
     this.deletePostID = data.postID;
+  }
+
+  resetDeletePost() {
+    document.getElementById('delete-post-user').innerText = "";
+    document.getElementById('delete-post-title').innerText = "";
+    document.getElementById('delete-post-body').innerText = "";
   }
 
 }

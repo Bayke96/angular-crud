@@ -60,3 +60,39 @@ textarea {
     background-color: white;
     color: rebeccapurple;
   }
+
+#get-post-user {
+  min-height: 1em;
+  padding: 1em;
+  text-align: center;
+}
+
+#get-post-body {
+  min-height: 1em;
+  padding: 1em;
+  text-align: center;
+}
+
+#get-post-title {
+  min-height: 1em;
+  padding: 1em;
+  text-align: center;
+}
+
+#delete-post-user {
+  min-height: 1em;
+  padding: 1em;
+  text-align: center;
+}
+
+#delete-post-body {
+  min-height: 1em;
+  padding: 1em;
+  text-align: center;
+}
+
+#delete-post-title {
+  min-height: 1em;
+  padding: 1em;
+  text-align: center;
+}

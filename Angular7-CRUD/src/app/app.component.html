@@ -38,7 +38,7 @@
         <form [formGroup]="getPostData" (ngSubmit)="onSubmitGetPost(getPostData.value)">
 
           <p>Post ID</p>
-          <select formControlName="postID">
+          <select formControlName="postID" (change)="loadGetPost($event.target.value)">
             <option value="default">Choose</option>
             <option *ngFor="let post of postsData; let i = index" [value]="post.id">
               {{ post.id }}
@@ -46,13 +46,16 @@
           </select>
 
           <p>User</p>
+          <p id="get-post-user"></p>
 
           <p>Title</p>
+          <p id="get-post-title"></p>
 
           <p>Body</p>
+          <p id="get-post-body"></p>
 
           <input type="submit" class="form-button" value="Search" [disabled]="!getPostData.valid">
-          <input type="reset" class="form-button" value="Reset">
+          <input type="reset" class="form-button" value="Reset" (click)="resetGetPost()">
 
         </form>
         
@@ -64,7 +67,7 @@
         <form [formGroup]="updatePostData" (ngSubmit)="onSubmitUpdatePost(updatePostData.value)">
 
           <p>Post ID</p>
-          <select formControlName="postID">
+          <select formControlName="postID" (change)="loadUpdatePost($event.target.value)">
             <option value="default">Choose</option>
             <option *ngFor="let post of postsData; let i = index" [value]="post.id">
               {{ post.id }}
@@ -98,7 +101,7 @@
         <form [formGroup]="deletePostData" (ngSubmit)="onSubmitDeletePost(deletePostData.value)">
 
           <p>Post ID</p>
-          <select formControlName="postID">
+          <select formControlName="postID" (change)="loadDeletePost($event.target.value)">
             <option value="default">Choose</option>
             <option *ngFor="let post of postsData; let i = index" [value]="post.id">
               {{ post.id }}
@@ -106,14 +109,17 @@
           </select>
 
           <p>User</p>
+          <p id="delete-post-user"></p>
 
           <p>Title</p>
+          <p id="delete-post-title"></p>
 
           <p>Body</p>
+          <p id="delete-post-body"></p>
 
 
           <input type="submit" class="form-button" value="Delete" [disabled]="!deletePostData.valid">
-          <input type="reset" class="form-button" value="Reset">
+          <input type="reset" class="form-button" value="Reset" (click)="resetDeletePost()">
 
         </form>
       </mat-tab>
