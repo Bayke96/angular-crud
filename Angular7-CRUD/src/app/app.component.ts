@@ -167,7 +167,6 @@ export class AppComponent {
 
   }
 
-
   // Reset get post form fields.
   resetGetPost() {
     document.getElementById('get-post-user').innerText = "";
