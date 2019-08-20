@@ -70,36 +70,48 @@ textarea {
   min-height: 1em;
   padding: 1.5em;
   text-align: center;
+  font-weight: bold;
+  color: rebeccapurple;
 }
 
 #get-post-body {
   min-height: 1em;
   padding: 1.5em;
   text-align: center;
+  font-weight: bold;
+  color: rebeccapurple;
 }
 
 #get-post-title {
   min-height: 1em;
   padding: 1.5em;
   text-align: center;
+  font-weight: bold;
+  color: rebeccapurple;
 }
 
 #delete-post-user {
   min-height: 1em;
   padding: 1.5em;
   text-align: center;
+  color: rebeccapurple;
+  font-weight: bold;
 }
 
 #delete-post-body {
   min-height: 1em;
   padding: 1.5em;
   text-align: center;
+  color: rebeccapurple;
+  font-weight: bold;
 }
 
 #delete-post-title {
   min-height: 1em;
   padding: 1.5em;
   text-align: center;
+  color: rebeccapurple;
+  font-weight: bold;
 }
 
 .modal-header {

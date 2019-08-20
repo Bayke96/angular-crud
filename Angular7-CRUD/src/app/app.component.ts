@@ -131,6 +131,13 @@ export class AppComponent {
       document.getElementById("modal-title").innerText = 'Create a new post';
       document.getElementById("modal-text").innerHTML = '<strong>Post created successfully.</strong>';
       $('#response-modal').modal('show');
+
+      this.createPostData.patchValue({
+        userID: "default",
+        title: "",
+        body: ""
+      });
+
     });
 
   }
@@ -208,8 +215,16 @@ export class AppComponent {
 
     this.postService.updatePost(formData).subscribe((postResponse) => {
       document.getElementById("modal-title").innerText = 'Update an existing post';
-      document.getElementById("modal-text").innerHTML = '<strong>The post has been updated.</strong>';
+      document.getElementById("modal-text").innerHTML = '<strong>Post updated successfully.</strong>';
       $('#response-modal').modal('show');
+
+      this.updatePostData.patchValue({
+        postID: "default",
+        userID: "default",
+        title: "",
+        body: ""
+      });
+
     });
 
   }
@@ -240,6 +255,18 @@ export class AppComponent {
 
   onSubmitDeletePost(data) {
     this.deletePostID = data.postID;
+    this.postService.deletePost(this.deletePostID).subscribe((postResponse) => {
+
+      document.getElementById("modal-title").innerText = 'Delete an existing post';
+      document.getElementById("modal-text").innerHTML = '<strong>Post deleted successfully.</strong>';
+      $('#response-modal').modal('show');
+
+      this.deletePostData.patchValue({
+        postID: "default",
+      });
+      this.resetDeletePost();
+
+    });
   }
 
   resetDeletePost() {

@@ -48,4 +48,8 @@ export class PostServiceService {
     );
   }
 
+  deletePost(postID) {
+    return this.http.delete(this.postsURL + '/' + postID);
+  }
+
 }
