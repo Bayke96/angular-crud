@@ -20,12 +20,7 @@ export class AppComponent {
   createPostBody;
 
   getPostData;
-  getPostID;
-  getPostUserID;
-  getPostUsername;
-  getPostTitle;
-  getPostBody;
-
+  
   updatePostData;
   updatePostID;
   updatePostUser;
@@ -34,22 +29,22 @@ export class AppComponent {
 
   deletePostData;
   deletePostID;
-  deletePostUser;
-  deletePostTitle;
-  deletePostBody;
 
   constructor(private postService: PostServiceService) { }
 
   ngOnInit() {
 
+    // Load users into forms.
     this.postService.getUsers().subscribe((data) => {
       this.usersData = Array.from(Object.keys(data), k => data[k]);
     });
 
+    // Load posts into forms.
     this.postService.getPosts().subscribe((data) => {
       this.postsData = Array.from(Object.keys(data), k => data[k]);
     });
 
+    // Create post form.
     this.createPostData = new FormGroup({
 
       userID: new FormControl("", Validators.compose([
@@ -70,6 +65,7 @@ export class AppComponent {
         ]))
     });
 
+    // Get post form.
     this.getPostData = new FormGroup({
 
       postID: new FormControl("", Validators.compose([
@@ -79,6 +75,7 @@ export class AppComponent {
 
     });
 
+    // Update post form.
     this.updatePostData = new FormGroup({
 
       postID: new FormControl("", Validators.compose([
@@ -104,6 +101,7 @@ export class AppComponent {
       ]))
     });
 
+    // Delete post form.
     this.deletePostData = new FormGroup({
 
       postID: new FormControl("", Validators.compose([
@@ -116,6 +114,7 @@ export class AppComponent {
   }
 
   // Create Post
+  // Submit the form from the data and create a new post.
   onSubmitCreatePost(data) {
     this.createPostUser = data.userID;
     this.createPostTitle = data.title;
@@ -142,11 +141,9 @@ export class AppComponent {
 
   }
 
-  onSubmitGetPost(data) {
-    this.getPostID = data.postID;
-  }
-
   // Read / Get Post
+
+  // Load the post selected from the dropdown list.
   loadGetPost(target) {
     let postID = target;
 
@@ -170,6 +167,8 @@ export class AppComponent {
 
   }
 
+
+  // Reset get post form fields.
   resetGetPost() {
     document.getElementById('get-post-user').innerText = "";
     document.getElementById('get-post-title').innerText = "";
@@ -177,6 +176,7 @@ export class AppComponent {
   }
 
   // Update an existing post
+  // Load the data from the post selected at the dropdown list.
   loadUpdatePost(target) {
 
     this.updatePostID = target;
@@ -199,7 +199,8 @@ export class AppComponent {
     });
 
   }
-  
+
+  // Submit the data taken from the form and update an existing post.
   onSubmitUpdatePost(data) {
     this.updatePostID = data.postID;
     this.updatePostUser = data.userID;
@@ -230,6 +231,8 @@ export class AppComponent {
   }
 
   // Delete an existing post
+
+  // Load a post selected from the dropdown list.
   loadDeletePost(target) {
     let postID = target;
 
@@ -253,6 +256,7 @@ export class AppComponent {
 
   }
 
+  // Submit the data from the form and execute the service, deleting the post.
   onSubmitDeletePost(data) {
     this.deletePostID = data.postID;
     this.postService.deletePost(this.deletePostID).subscribe((postResponse) => {
@@ -269,6 +273,7 @@ export class AppComponent {
     });
   }
 
+  // Reset all fields in the Delete Post form.
   resetDeletePost() {
     document.getElementById('delete-post-user').innerText = "";
     document.getElementById('delete-post-title').innerText = "";
