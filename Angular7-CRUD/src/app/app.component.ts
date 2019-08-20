@@ -198,6 +198,20 @@ export class AppComponent {
     this.updatePostUser = data.userID;
     this.updatePostTitle = data.title;
     this.updatePostBody = data.body;
+
+    var formData = {
+      postID: this.updatePostID,
+      userID: this.createPostUser,
+      title: this.createPostTitle,
+      body: this.createPostBody
+    };
+
+    this.postService.updatePost(formData).subscribe((postResponse) => {
+      document.getElementById("modal-title").innerText = 'Update an existing post';
+      document.getElementById("modal-text").innerHTML = '<strong>The post has been updated.</strong>';
+      $('#response-modal').modal('show');
+    });
+
   }
 
   // Delete an existing post

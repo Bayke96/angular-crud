@@ -38,4 +38,14 @@ export class PostServiceService {
     );
   }
 
+  updatePost(data) {
+    return this.http.put(this.postsURL + '/' + data.postID,
+      {
+        user: data.userID,
+        title: data.title,
+        body: data.body
+      }
+    );
+  }
+
 }
